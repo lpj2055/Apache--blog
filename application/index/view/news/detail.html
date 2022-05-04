@@ -1,0 +1,223 @@
+<!doctype html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>{$news.title}-{$siteconfig.site_name}</title>
+    <meta name="keywords" content="{$siteconfig.site_keywords}" />
+    <meta name="description" content="{$siteconfig.site_description}" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="shortcut icon" href="__TEMPLATE1_IMAGES__/bellbell.ico" type="image/x-icon" />
+    <link rel="icon" href="__TEMPLATE1_IMAGES__/bellbell.png" type=" image/png">
+    <link href="__TEMPLATE1_CSS__/base.css" rel="stylesheet">
+    <link href="__TEMPLATE1_CSS__/m.css" rel="stylesheet">
+    <script src="__TEMPLATE1_JS__/jquery-1.8.3.min.js"></script>
+    <script src="__TEMPLATE1_JS__/comm.js"></script>
+    <!--[if lt IE 9]>
+    <script src="__TEMPLATE1_JS__/modernizr.js"></script>
+    <![endif]-->
+
+</head>
+
+<body>
+    <!--top begin-->
+    {include file="public/header" /}
+
+    {include file="public/searchbox" /}
+    <!--top end-->
+    <article>
+        <!--lbox begin-->
+        <div class="lbox">
+            <div class="content_box whitebg">
+                <h2 class="htitle"><span class="con_nav">您现在的位置是：<a href="/">网站首页</a>><a
+                            href="/index/news/cate/id/{$news.cid}">{$news.cate_name}</a></span>{$news.cate_name}</h2>
+                <h1 class="con_tilte">{$news.title}</h1>
+                <p class="bloginfo">
+                    <i class="avatar">
+                        {if $news.photo}
+                        <img src="__UPLOADS__/{$news.photo}">
+                        {else/}
+                        <img src="__TEMPLATE1_IMAGES__/avatar.jpg">
+                        {/if}
+                        </i><span>{$news.nickname}</span><span>{$news.create_time|date="Y-m-d"}</span><span>【<a
+                            href="/index/news/cate/id/{$news.cid}">{$news.cate_name}</a>】</span><span>{$news.views}人已围观</span></p>
+                <p class="con_info">
+                    <b>简介</b>{$news.summary|htmlspecialchars_decode}
+                </p>
+                <div class="con_text">
+                    {if session('user_level') < $news['read_level']}
+                        <div style="width:100%; height:100px; padding-top:50px;">
+                            <center><h2>阅读权限不够</h2></center>
+                        </div>
+                        
+                    {else/}
+                        {$news.content|raw|htmlspecialchars_decode}
+                    {/if}
+                    
+                    <p class="share">
+                        <b>转载：</b>感谢您对铃铛铃铛个人博客网站平台的认可，以及对我们原创作品以及文章的青睐，非常欢迎各位朋友分享到个人站长或者朋友圈，但转载请说明文章出处“来源铃铛铃铛个人博客”。</p>
+                    <p><span class="diggit">很赞哦！ (74)</span></p>
+                    <div class="nextinfo">
+                        <p>上一篇：
+                            {if $pre}
+                            <a href="/index/news/detail/id/{$pre.id}">{$pre.title}</a>
+                            {else /}
+                            没有了
+                            {/if}
+                        </p>
+                        <p>下一篇：
+                            {if $next}
+                            <a href="/index/news/detail/id/{$next.id}">{$next.title}</a>
+                            {else /}
+                            没有了
+                            {/if}
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            {if $ad3['is_show'] == 1}
+            <div class="ad whitebg"> <a href="{$ad3.url}" target="_blank"><img src="__UPLOADS__/{$ad3.pic}"></a> </div>
+            {/if}
+
+            <div class="whitebg">
+                <h2 class="htitle">相关文章</h2>
+                <ul class="otherlink">
+                    {volist name="relevant" id="vo"}
+                    <li><a href="/index/news/detail/id/{$vo.id}" title="{$vo.title}">{$vo.title}</a></li>
+                    {/volist}
+                </ul>
+            </div>
+
+            {if $siteconfig['show_commentlist'] == 1}
+            <div class="whitebg gbook">
+                <h2 class="htitle">文章评论</h2>
+                <ul>
+                    {volist name="commentList" id="vo"}
+                        <li>
+                            <div class="comment">
+                                <label class="floor">#{$i}楼</label>  {$vo.create_time|date="Y-m-d H:i"} <label class="floor">{$vo.nickname}</label>
+                                <div class="comment_content">{$vo.content}</div>
+                            </div>
+                            
+                        </li>
+                    {/volist}
+                </ul>
+            </div>
+            {/if}
+
+            {if $siteconfig['allow_comment'] == 1}
+            <div class="whitebg gbook">
+                <h2 class="htitle">发表评论</h2>
+                <textarea name="comment_content" id="comment_content" style="width: 100%; height: 100px;"></textarea>
+                <div style="width: 400px;">
+                    <table border="0">
+                        <tr>
+                            <td><img width="140" height="35" src="{:url('admins/login/verify')}" id="verify-img" /></td>
+                            <td><input type="text" id="verify" name="verify" placeholder="请输入验证码" maxlength="5" style="width: 120px; height: 35px; display: inline-block;"></td>
+                        </tr>
+                    </table>
+                </div>
+                <input type="hidden" id="nid" name="nid" value="{$news.id}">
+                <input type="submit" id="comment_btn" name="comment_btn" value="提交评论" class="sub_button"> 
+            </div>
+            {/if}
+        </div>
+        <!--lbox end-->
+        <div class="rbox">
+            <div class="whitebg paihang">
+                <h2 class="htitle">点击排行</h2>
+                <!-- <section class="topnews imgscale"><a href="info.html"><img
+                            src="__TEMPLATE1_IMAGES__/h1.jpg"><span>6条网页设计配色原则,让你秒变配色高手</span></a></section> -->
+                <ul>
+                    {volist name="rank" id="vo"}
+                    <li><i></i><a href="/index/news/detail/id/{$vo.id}">{$vo.title}</a></li>
+                    {/volist}
+                    
+                </ul>
+            </div>
+            <div class="whitebg tuijian">
+                <h2 class="htitle">本栏推荐</h2>
+                <!-- <section class="topnews imgscale"><a href="info.html"><img
+                            src="__TEMPLATE1_IMAGES__/h2.jpg"><span>6条网页设计配色原则,让你秒变配色高手</span></a></section> -->
+                <ul>
+                    {volist name="recommend" id="vo"}
+                    <li>
+                        <a href="/index/news/detail/id/{$vo.id}" target="_blank"><i><img src="__UPLOADS__/{$vo.pic}"></i>
+                            <p>{$vo.title}</p>
+                        </a>
+                    </li>
+                    {/volist}
+                   
+                </ul>
+            </div>
+         
+            {if $ad4.is_show == 1}
+            <div class="ad whitebg imgscale">
+                <ul>
+                    <a href="{$ad4.url}" target="_blank"><img src="__UPLOADS__/{$ad4.pic}"></a>
+                </ul>
+            </div>           
+            {/if}
+           
+        </div>
+    </article>
+    {include file="public/footer" /}
+</body>
+
+</html>
+
+<script>
+    $(function(){
+        // 点击刷新验证码
+        var verifyUrl = $('#verify-img').attr('src');
+            $('#verify-img').click(function(){
+                $(this).attr('src', verifyUrl );
+            });
+
+        // 异步提交评论内容
+        $('#comment_btn').click(function(){
+            
+            var content = $('#comment_content').val();
+            var nid = $('#nid').val();
+            var verify = $('#verify').val();
+            var userid = "{:session('uid')}";
+
+            if(!userid){
+                alert('您还没有登录');
+                return false;
+            }
+
+            if(!content){
+                alert('请填写评论内容');
+                return false;
+            }
+            if(!verify){
+                alert('请填写验证码');
+                return false;
+            }
+            $('#comment_btn').attr("disabled", true);
+            $.ajax({
+                url : "/index/news/comment",
+                type : "post",
+                data : {content: content, nid: nid, verify: verify},
+                success : function(response, status, xhr){
+                    console.log(response);
+                    if(response.status == 200){
+                        alert("发布成功，等待审核");
+                        window.location.reload();
+                      
+                    }else if(response.status == 400){
+                        alert(response.msg);
+                        $('#comment_btn').removeAttr("disabled");
+                    }
+                },
+                error : function(xhr, errorText, errorStatus){
+                    console.log(xhr.status + ':' + xhr.statusText);
+                    $('#comment_btn').removeAttr("disabled");
+                }
+            });
+        });
+    });
+
+</script>

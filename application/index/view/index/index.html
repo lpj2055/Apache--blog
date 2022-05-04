@@ -1,0 +1,228 @@
+<!doctype html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>{$siteconfig.site_name}</title>
+    <meta name="keywords" content="{$siteconfig.site_keywords}" />
+    <meta name="description" content="{$siteconfig.site_description}" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="shortcut icon" href="__TEMPLATE1_IMAGES__/bellbell.ico" type="image/x-icon" />
+    <link rel="icon" href="__TEMPLATE1_IMAGES__/bellbell.png" type=" image/png">
+    <link href="__TEMPLATE1_CSS__/base.css" rel="stylesheet">
+    <link href="__TEMPLATE1_CSS__/m.css" rel="stylesheet">
+    <script src="__TEMPLATE1_JS__/jquery-1.8.3.min.js"></script>
+    <script src="__TEMPLATE1_JS__/comm.js"></script>
+    <!--[if lt IE 9]>
+    <script src="__TEMPLATE1_JS__/modernizr.js"></script>
+    <![endif]-->
+</head>
+
+<body>
+    <!--top begin-->
+    {include file="public/header" /}
+    
+    {include file="public/searchbox" /}
+    <!--top end-->
+    <article>
+        <!--lbox begin-->
+        <div class="lbox">
+            <!--banbox begin-->
+            <div class="banbox">
+                <div class="banner">
+                    <div id="banner" class="fader">
+                        {volist name="banner" id="vo"}
+                        <li class="slide"><a href="{$vo.url}" target="_blank"><img src="__UPLOADS__/{$vo.pic}"></a></li>
+                        {/volist}
+                        <div class="fader_controls">
+                            <div class="page prev" data-target="prev"></div>
+                            <div class="page next" data-target="next"></div>
+                            <ul class="pager_list">
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!--banbox end-->
+            <!--headline begin-->
+            <div class="headline">
+                <ul>
+                    {volist name="headline" id="vo"}
+                    <li><a href="{$vo.url}" title="{$vo.title}" target="_blank"><img src="__UPLOADS__/{$vo.pic}" alt="{$vo.title}"><span>{$vo.title}</span></a></li>
+                    {/volist}
+                </ul>
+            </div>
+            <!--headline end-->
+            <div class="clearblank"></div>
+            <div class="tab_box whitebg">
+                <div class="tab_buttons">
+                    <ul>
+                        {volist name="news_category" id="vo"}
+                        <li {if $i==1} class="newscurrent" {/if}>{$vo.cate_name}</li>
+                        {/volist}
+                    </ul>
+                </div>
+                <div class="newstab">
+                    {volist name="news_category" id="vo"}
+                    <div class="newsitem">
+                        {if $vo.news_recommend}
+                        <div class="newspic">
+                            <ul>
+                                {volist name="vo.news_recommend" id="item"}
+                                <li><a href="/index/news/detail/id/{$item.id}" target="_blank"><img src="__UPLOADS__/{$item.pic}"><span>{$item.title}</span></a></li>
+                                {/volist}
+                            </ul>
+                        </div>
+                        {/if}
+
+                        {if $vo.news_list}
+                        <ul class="newslist">
+                            {volist name="vo.news_list" id="item"}
+                            <li><i></i><a href="/index/news/detail/id/{$item.id}" target="_blank">{$item.title}</a>
+                                <p>{$item.summary}</p>
+                            </li>
+                            {/volist}
+                            
+                        </ul>
+                        {/if}
+                    </div>
+                    {/volist}
+                    
+                </div>
+            </div>
+            <!--tab_box end-->
+            <!-- <div class="zhuanti whitebg">
+                <h2 class="htitle"><span class="hnav"><a href="info.html">原创模板</a><a href="info.html">古典</a><a
+                            href="info.html">清新</a><a href="info.html">低调</a></span>精彩专题</h2>
+                <ul>
+                    <li> <i class="ztpic"><a href="/" target="_blank"><img src="__TEMPLATE1_IMAGES__/1.jpg"></a></i>
+                        <b>个人博客模板《今夕何夕》-响应式个人...</b><span>个人博客模板《今夕何夕》，宽屏响应式个人博客模板，采用冷色系为主，固定导航栏和侧边栏，无缝滚动图片...</span><a
+                            href="" target="_blank" class="readmore">文章阅读</a> </li>
+                    <li> <i class="ztpic"><a href="/" target="_blank"><img src="__TEMPLATE1_IMAGES__/2.jpg"></a></i>
+                        <b>个人博客模板《今夕何夕》-响应式个人...</b><span>个人博客模板《今夕何夕》，宽屏响应式个人博客模板，采用冷色系为主，固定导航栏和侧边栏，无缝滚动图片...</span><a
+                            href="" target="_blank" class="readmore">文章阅读</a> </li>
+                    <li> <i class="ztpic"><a href="/" target="_blank"><img src="__TEMPLATE1_IMAGES__/3.jpg"></a></i>
+                        <b>个人博客模板《今夕何夕》-响应式个人...</b><span>个人博客模板《今夕何夕》，宽屏响应式个人博客模板，采用冷色系为主，固定导航栏和侧边栏，无缝滚动图片...</span><a
+                            href="" target="_blank" class="readmore">文章阅读</a> </li>
+                    <li> <i class="ztpic"><a href="/" target="_blank"><img src="__TEMPLATE1_IMAGES__/4.jpg"></a></i>
+                        <b>个人博客模板《今夕何夕》-响应式个人...</b><span>个人博客模板《今夕何夕》，宽屏响应式个人博客模板，采用冷色系为主，固定导航栏和侧边栏，无缝滚动图片...</span><a
+                            href="" target="_blank" class="readmore">文章阅读</a> </li>
+                    <li> <i class="ztpic"><a href="/" target="_blank"><img src="__TEMPLATE1_IMAGES__/h2.jpg"></a></i>
+                        <b>个人博客模板《今夕何夕》-响应式个人...</b><span>个人博客模板《今夕何夕》，宽屏响应式个人博客模板，采用冷色系为主，固定导航栏和侧边栏，无缝滚动图片...</span><a
+                            href="" target="_blank" class="readmore">文章阅读</a> </li>
+                    <li> <i class="ztpic"><a href="/" target="_blank"><img src="__TEMPLATE1_IMAGES__/h1.jpg"></a></i>
+                        <b>个人博客模板《今夕何夕》-响应式个人...</b><span>个人博客模板《今夕何夕》，宽屏响应式个人博客模板，采用冷色系为主，固定导航栏和侧边栏，无缝滚动图片...</span><a
+                            href="" target="_blank" class="readmore">文章阅读</a> </li>
+                </ul>
+            </div> -->
+            
+            {if $ad1['is_show'] == 1}
+            <div class="ad whitebg"> <a href="{$ad1.url}" target="_blank"><img src="__UPLOADS__/{$ad1.pic}"></a> </div>
+            {/if}
+            <div class="whitebg bloglist">
+                <h2 class="htitle">最新博文</h2>
+                <ul>
+                    <!--单图-->
+                    {volist name="blog_new" id="vo"}
+                    <li>
+                        <h3 class="blogtitle"><a href="/index/news/detail/id/{$vo.id}" target="_blank">{if $vo.is_top==1}<b>【顶】</b>{/if}{$vo.title}</a></h3>
+                        {if $vo.pic!=''}
+                        <span class="blogpic imgscale"><i><a href="/index/news/cate/id/{$vo.cid}" target="_blank">{$vo.cate_name}</a></i><a href="/index/news/detail/id/{$vo.id}" title="{$vo.title}"><img
+                                    src="__UPLOADS__/{$vo.pic}" alt=""></a>
+                        </span>
+                        {/if}
+                        <p class="blogtext">
+                            {$vo.summary}
+                        </p>
+                        <p class="bloginfo">
+                            <i class="avatar">
+                                {if $vo.photo}
+                                <img src="__UPLOADS__/{$vo.photo}">
+                                {else/}
+                                <img src="__TEMPLATE1_IMAGES__/avatar.jpg">
+                                {/if}
+                                </i>
+                                <span>{$vo.nickname}</span><span>{$vo.create_time|date="Y-m-d"}</span><span>【<a
+                                    href="/index/news/cate/id/{$vo.cid}" target="_blank">{$vo.cate_name}</a>】</span></p>
+                        <a href="/index/news/detail/id/{$vo.id}" class="viewmore">阅读更多</a>
+                    </li>
+                    {/volist}
+             
+                </ul>
+            </div>
+            <!--bloglist end-->
+        </div>
+        <div class="rbox">
+            <div class="card">
+                <h2>我的名片</h2>
+                <p>网名：铃铛铃铛</p>
+                <p>职业：PHP工程师</p>
+                <p>现居：辽宁-沈阳</p>
+                <p>网址：www.bellbell.net</p>
+                <ul class="linkmore">
+                    <li><a href="http://jiabei.bellbell.net/" target="_blank" class="iconfont icon-zhuye" title="网站地址"></a></li>
+                    <li><a href="http://jiabei.bellbell.net/" target="_blank" class="iconfont icon-youxiang"
+                            title="我的邮箱"></a></li>
+                    <li><a href="http://jiabei.bellbell.net/" target="_blank" class="iconfont icon---" title="QQ联系我"></a>
+                    </li>
+                    <li id="weixin"><a href="http://jiabei.bellbell.net/" target="_blank" class="iconfont icon-weixin"
+                            title="关注我的微信"></a><i><img src="__TEMPLATE1_IMAGES__/wx.png"></i></li>
+                </ul>
+            </div>
+            <div class="whitebg notice">
+                <h2 class="htitle">网站公告</h2>
+                <ul>
+                    {volist name="notice" id="vo"}
+                    <li><a href="/index/notice/detail/id/{$vo.id}">{$vo.title}</a></li>
+                    {/volist}
+                </ul>
+            </div>
+            <div class="whitebg paihang">
+                <h2 class="htitle">点击排行</h2>
+                <!-- <section class="topnews imgscale"><a href="info.html"><img
+                            src="__TEMPLATE1_IMAGES__/h1.jpg"><span>6条网页设计配色原则,让你秒变配色高手</span></a></section> -->
+                <ul>
+                    {volist name="rank" id="vo"}
+                    <li><i></i><a href="/index/news/detail/id/{$vo.id}">{$vo.title}</a></li>
+                    {/volist}
+                </ul>
+            </div>
+            <div class="whitebg tuijian">
+                <h2 class="htitle">站长推荐</h2>
+                <!-- <section class="topnews imgscale"><a href="info.html"><img
+                            src="__TEMPLATE1_IMAGES__/h2.jpg"><span>6条网页设计配色原则,让你秒变配色高手</span></a></section> -->
+                <ul>
+                    {volist name="recommend" id="vo"}
+                    <li>
+                        <a href="/index/news/detail/id/{$vo.id}" target="_blank"><i><img src="__UPLOADS__/{$vo.pic}"></i>
+                            <p>{$vo.title}</p>
+                        </a>
+                    </li>
+                    {/volist}
+                        
+                </ul>
+            </div>
+            {if $ad2.is_show == 1}
+            <div class="ad whitebg imgscale">
+                <ul>
+                    <a href="{$ad2.url}" target="_blank"><img src="__UPLOADS__/{$ad2.pic}"></a>
+                </ul>
+            </div>           
+            {/if}
+ 
+          
+            <div class="links whitebg">
+                <h2 class="htitle"><span class="sqlink"></span>友情链接</h2>
+                <ul>
+                    {volist name="links" id="vo"}
+                    <li><a href="{$vo.url}" target="_blank">{$vo.title}</a></li>
+                    {/volist}
+                </ul>
+            </div>
+        </div>
+    </article>
+    
+    {include file="public/footer" /}
+</body>
+
+</html>

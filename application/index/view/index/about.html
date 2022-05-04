@@ -1,0 +1,58 @@
+<!doctype html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>关于我们-{$siteconfig.site_name}</title>
+    <meta name="keywords" content="{$siteconfig.site_keywords}" />
+    <meta name="description" content="{$siteconfig.site_description}" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="shortcut icon" href="__TEMPLATE1_IMAGES__/bellbell.ico" type="image/x-icon" />
+    <link rel="icon" href="__TEMPLATE1_IMAGES__/bellbell.png" type=" image/png">
+    <link href="__TEMPLATE1_CSS__/base.css" rel="stylesheet">
+    <link href="__TEMPLATE1_CSS__/m.css" rel="stylesheet">
+    <script src="__TEMPLATE1_JS__/jquery-1.8.3.min.js"></script>
+    <script src="__TEMPLATE1_JS__/comm.js"></script>
+    <!--[if lt IE 9]>
+    <script src="__TEMPLATE1_JS__/modernizr.js"></script>
+    <![endif]-->
+</head>
+
+<body>
+    <!--top begin-->
+    {include file="public/header" /}
+    {include file="public/searchbox" /}
+    <!--top end-->
+    <article>
+        <div class="whitebg about">
+            <div class="ab_box"> <i class="avatar_pic"><img src="__TEMPLATE1_IMAGES__/avatar.jpg"></i>
+                <h3>铃铛铃铛</h3>
+                <p>一个80后草根女站长！专注程序开发的PHP程序员。</p>
+                <p>阿木软件开发工作室创始人。</p>
+            </div>
+            <h2 class="gd_title">内心独白</h2>
+            <p class="ab_dubai">
+                　　为人朴实正直，有积极进取的心态，努力拼搏。性格沉稳内敛，做事细心踏实，个性坚韧，能吃苦耐劳，对工作有很强的责任感！有很强进取心和团队协作精神，学习能力、适应能力、承受压力能力较强，善于挑战自我。能够胜任今后的工作，并在实践中不断学习进步!我不认为我比其他人都强，但我有自信做到比其他人强。 
+            </p>
+            <p class="ab_dubai">
+                　　本人性格开朗、稳重、有活力，待人热情、真诚；工作认真负责，积极主动，能吃苦耐劳，用于承受压力，勇于创新；有很强的组织能力和团队协作精神，具有较强的适应能力；纪律性强，工作积极配合；意志坚强，具有较强的无私奉献精神。 对待工作认真负责，善于沟通、协调有较强的组织能力与团队精神；活泼开朗、乐观上进、有爱心并善于施教并行；上进心强、勤于学习能不断提高自身的能力与综合素质。在未来的工作中，我将以充沛的精力，刻苦钻研的精神来努力工作，稳定地提高自己的工作能力，与企业同步发展。
+            </p>
+            <span class="ly_button"><a href="#" target="_blank">留言</a></span>
+            <h2 class="gd_title">心路历程</h2>
+            <ul class="xinlu">
+                {volist name="history" id="vo"}
+                <li><a href="/index/news/detail/id/{$vo.id}" target="_blank"><i><img src="__UPLOADS__/{$vo.pic}"></i>
+                        <p>{$vo.title}</p>
+                        <span>{$vo.summary}</span>
+                    </a></li>
+                {/volist}
+              
+            </ul>
+           
+            
+        </div>
+    </article>
+    {include file="public/footer" /}
+</body>
+
+</html>

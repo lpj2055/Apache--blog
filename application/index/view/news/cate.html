@@ -1,0 +1,106 @@
+<!doctype html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>{$category.cate_name}-{$siteconfig.site_name}</title>
+    <meta name="keywords" content="{$siteconfig.site_keywords}" />
+    <meta name="description" content="{$siteconfig.site_description}" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="shortcut icon" href="__TEMPLATE1_IMAGES__/bellbell.ico" type="image/x-icon" />
+    <link rel="icon" href="__TEMPLATE1_IMAGES__/bellbell.png" type=" image/png">
+    <link href="__TEMPLATE1_CSS__/base.css" rel="stylesheet">
+    <link href="__TEMPLATE1_CSS__/m.css" rel="stylesheet">
+    <script src="__TEMPLATE1_JS__/jquery-1.8.3.min.js"></script>
+    <script src="__TEMPLATE1_JS__/comm.js"></script>
+    <!--[if lt IE 9]>
+    <script src="js/modernizr.js"></script>
+    <![endif]-->
+</head>
+
+<body>
+    <!--top begin-->
+    {include file="public/header" /}
+    {include file="public/searchbox" /}
+    <!--top end-->
+    <article>
+        <!--lbox begin-->
+        <div class="lbox">
+            <div class="whitebg lanmu"> 
+                
+                {if $category.pic}
+                    <img src="__UPLOADS__/{$category.pic} ">
+                {/if}
+                <h1>{$category.cate_name}</h1>
+                <p>{$category.introduce}</p>
+            </div>
+            <div class="whitebg bloglist">
+                <h2 class="htitle">最新博文</h2>
+                <ul>
+                    {volist name="news" id="vo"}
+                    <li>
+                        <h3 class="blogtitle"><a href="/index/news/detail/id/{$vo.id}" target="_blank">{if $vo.is_top==1}<b>【顶】</b>{/if}{$vo.title}</a></h3>
+                        {if $vo.pic!=''}
+                        <span class="blogpic imgscale"><a href="/index/news/detail/id/{$vo.id}" title=""><img src="__UPLOADS__/{$vo.pic}" alt=""></a>
+                        </span>
+                        {/if}
+                        <p class="blogtext">
+                            {$vo.summary}
+                        </p>
+                        <p class="bloginfo"><i class="avatar">
+                            {if $vo.photo}
+                                <img src="__UPLOADS__/{$vo.photo}">
+                                {else/}
+                                <img src="__TEMPLATE1_IMAGES__/avatar.jpg">
+                                {/if}
+                        </i><span>{$vo.nickname}</span><span>{$vo.create_time|date="Y-m-d"}</span><span></span></p>
+                        <a href="/index/news/detail/id/{$vo.id}" class="viewmore">阅读更多</a>
+                    </li>
+                    {/volist}
+                </ul>
+                <!--pagelist-->
+                <div class="page">
+                    {$page|raw}
+                </div>
+                <!--pagelist end-->
+            </div>
+
+            <!--bloglist end-->
+        </div>
+        <div class="rbox">
+            <div class="whitebg paihang">
+                <h2 class="htitle">点击排行</h2>
+                <!-- <section class="topnews imgscale"><a href="info.html"><img
+                            src="__TEMPLATE1_IMAGES__/h1.jpg"><span>6条网页设计配色原则,让你秒变配色高手</span></a></section> -->
+                <ul>
+                    {volist name="rank" id="vo"}
+                    <li><i></i><a href="/index/news/detail/id/{$vo.id}">{$vo.title}</a></li>
+                    {/volist}
+                </ul>
+            </div>
+            <div class="whitebg tuijian">
+                <h2 class="htitle">本栏推荐</h2>
+                <!-- <section class="topnews imgscale"><a href="info.html"><img
+                            src="__TEMPLATE1_IMAGES__/h2.jpg"><span>6条网页设计配色原则,让你秒变配色高手</span></a></section> -->
+                <ul>
+                    {volist name="recommend" id="vo"}
+                    <li>
+                        <a href="/index/news/detail/id/{$vo.id}" target="_blank"><i><img src="__UPLOADS__/{$vo.pic}"></i>
+                            <p>{$vo.title}</p>
+                        </a>
+                    </li>
+                    {/volist}
+                </ul>
+            </div>
+            <div class="ad whitebg imgscale">
+                <ul>
+                    <a href="info.html"><img src="__TEMPLATE1_IMAGES__/b04.jpg"></a>
+                </ul>
+            </div>
+          
+        </div>
+    </article>
+    {include file="public/footer" /}
+</body>
+
+</html>
